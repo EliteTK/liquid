@@ -314,6 +314,13 @@ class StandardFiltersTest < Minitest::Test
     assert_template_result 'abc', "{{ source | strip_newlines }}", 'source' => "a\r\nb\nc"
   end
 
+  def test_replace_newlines
+    assert_template_result 'a b c', "{{ source | replace_newlines: ' ' }}", 'source' => "a\nb\nc"
+    assert_template_result 'a b c', "{{ source | replace_newlines: ' ' }}", 'source' => "a\r\nb\nc"
+    assert_template_result 'a-b-c', "{{ source | replace_newlines: '-' }}", 'source' => "a\nb\nc"
+    assert_template_result 'a-b-c', "{{ source | replace_newlines: '-' }}", 'source' => "a\r\nb\nc"
+  end
+
   def test_newlines_to_br
     assert_template_result "a<br />\nb<br />\nc", "{{ source | newline_to_br }}", 'source' => "a\nb\nc"
   end
