@@ -105,6 +105,10 @@ module Liquid
       input.to_s.gsub(/\r?\n/, ''.freeze)
     end
 
+    def replace_newlines(input, replacement)
+      input.to_s.gsub(/\r?\n/, replacement)
+    end
+
     # Join elements of the array with certain character between them
     def join(input, glue = ' '.freeze)
       InputIterator.new(input).join(glue)
